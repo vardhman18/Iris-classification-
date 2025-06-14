@@ -6,9 +6,9 @@ import joblib
 rf_model = joblib.load("iris_random_forest.pkl")
 svm_model = joblib.load("iris_svm.pkl")
 label_encoder = joblib.load("label_encoder.pkl")
-# scaler = joblib.load("scaler.pkl")  # Uncomment if used
 
-# --- PAGE CONFIG ---
+
+
 st.set_page_config(page_title="Iris Classifier", layout="centered", page_icon="🌸")
 
 st.markdown("""
@@ -35,11 +35,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# --- TITLE ---
+
 st.title("🌸 Iris Species Classifier")
 st.write("Predict the species of an Iris flower using **Random Forest** and **SVM** models.")
 
-# --- INPUT FORM ---
 st.subheader("📏 Enter Flower Measurements")
 with st.form("input_form"):
     col1, col2 = st.columns(2)
@@ -61,7 +60,6 @@ if submitted:
         columns=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"]
     )
 
-    # scaled_input = scaler.transform(input_data)  # if you used it
     rf_pred = rf_model.predict(input_data)
     svm_pred = svm_model.predict(input_data)
 
