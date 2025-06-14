@@ -2,23 +2,22 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load models and label encoder
+# Load models and encoders
 rf_model = joblib.load("iris_random_forest.pkl")
 svm_model = joblib.load("iris_svm.pkl")
 label_encoder = joblib.load("label_encoder.pkl")
+accuracies = joblib.load("model_accuracies.pkl")
 
-
-
+# Set page configuration
 st.set_page_config(page_title="Iris Classifier", layout="centered", page_icon="🌸")
 
+# Custom CSS styling
 st.markdown("""
     <style>
     html, body, [data-testid="stApp"] {
-       background: linear-gradient(to right, #f0f8ff, #e6f0fa);
-
+        background: linear-gradient(to right, #f0f8ff, #e6f0fa);
     }
     .main {
-        background-color: transparent;
         padding: 2rem;
     }
     h1, h2, h3 {
@@ -34,11 +33,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
-
+# App Title and Description
 st.title("🌸 Iris Species Classifier")
 st.write("Predict the species of an Iris flower using **Random Forest** and **SVM** models.")
 
+# Input form
 st.subheader("📏 Enter Flower Measurements")
 with st.form("input_form"):
     col1, col2 = st.columns(2)
@@ -53,7 +52,7 @@ with st.form("input_form"):
 
     submitted = st.form_submit_button("🔍 Predict")
 
-# --- PREDICTIONS ---
+# Prediction and output
 if submitted:
     input_data = pd.DataFrame(
         [[sepal_length, sepal_width, petal_length, petal_width]],
@@ -69,5 +68,10 @@ if submitted:
     st.subheader("🔎 Prediction Results")
     st.info(f"🌲 Random Forest: {rf_result}")
     st.info(f"🔀 SVM: {svm_result}")
+
+    # Display model accuracies on main page
+    st.subheader("📊 Model Accuracy")
+    st.success(f"🌲 Random Forest Accuracy: **{accuracies['rf'] * 100:.2f}%**")
+    st.success(f"🔀 SVM Accuracy: **{accuracies['svm'] * 100:.2f}%**")
 
     st.caption("Based on a machine learning model trained on the Iris dataset.")

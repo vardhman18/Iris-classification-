@@ -17,9 +17,10 @@ A simple machine learning web app to classify Iris flower species using **Random
 
 iris_classifier_project/
 │
-├── iris_random_forest.pkl # Trained Random Forest model
-├── iris_svm.pkl # Trained SVM model
-├── label_encoder.pkl # Label encoder used during training
+├── iris_random_forest.pkl
+├── iris_svm.pkl 
+├── label_encoder.pkl  
+├── model_accuracies.pkl
 ├── iris_classification
 ├── iris.csv
 ├── app.py # Streamlit web app
