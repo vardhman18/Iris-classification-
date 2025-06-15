@@ -72,3 +72,5 @@ Language: Python 3.9+
 ### 🧾 License
 This project is for educational purposes as part of a Data Science Internship.
 
+### Live Demo Link
+https://dofyfb42xappsnsefeuzrmb.streamlit.app/
